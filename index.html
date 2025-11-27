@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinLit - Smart Personal Finance Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="homePage" class="page active">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>FinLit</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="showLoginPage()">Login</button>
+                <button class="btn btn-filled" onclick="showLoginPage()">Get Started</button>
+            </div>
+        </nav>
+        
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Take Control of Your Financial Future</h1>
+                <p>FinLit helps you track expenses, set budgets, and achieve your financial goals with our intuitive personal finance manager.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-filled" onclick="showLoginPage()">
+                        <i class="fas fa-rocket"></i> Start Now
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-play-circle"></i> Watch Demo
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <h3>Financial Dashboard</h3>
+                        <div class="user-avatar">U</div>
+                    </div>
+                    <div class="preview-cards">
+                        <div class="preview-card">
+                            <h3>Current Balance</h3>
+                            <div class="amount">₹12,450</div>
+                        </div>
+                        <div class="preview-card">
+                            <h3>Monthly Spending</h3>
+                            <div class="amount">₹8,230</div>
+                        </div>
+                    </div>
+                    <div class="preview-chart">
+                        <div class="chart-bar" style="height: 70%"></div>
+                        <div class="chart-bar" style="height: 40%"></div>
+                        <div class="chart-bar" style="height: 60%"></div>
+                        <div class="chart-bar" style="height: 80%"></div>
+                        <div class="chart-bar" style="height: 30%"></div>
+                        <div class="chart-bar" style="height: 90%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features" id="features">
+            <h2>Powerful Features</h2>
+            <p>Everything you need to manage your finances effectively in one place</p>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Expense Tracking</h3>
+                    <p>Track your spending across categories with interactive charts and visualizations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Budget Management</h3>
+                    <p>Set monthly budgets and get alerts when you're approaching your limits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Goal Setting</h3>
+                    <p>Define financial goals and track your progress toward achieving them.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="loginPage" class="page">
+        <div class="login-container">
+            <div class="login-left">
+                <h1>Welcome Back!</h1>
+                <p>Sign in to access your financial dashboard and continue managing your finances effectively.</p>
+                <div style="margin-top: 2rem;">
+                    <button class="btn btn-outline" onclick="showHomePage()">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </div>
+            </div>
+            <div class="login-right">
+                <div class="login-form">
+                    <div class="login-header">
+                        <h2>Sign In</h2>
+                        <p>Enter your credentials to access your account</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <label for="username">User ID</label>
+                            <input type="text" id="username" placeholder="Enter your User ID" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="login-btn">Login to Dashboard</button>
+                    </form>
+                    <div id="loginMessage" class="message"></div>
+                    <div class="demo-credentials">
+                        <p><strong>Demo Credentials:</strong></p>
+                        <p>User ID: <strong>User0001</strong></p>
+                        <p>Password: <strong>Passuser0001</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboardPage" class="page">
+        <header class="dashboard-header">
+            <h1>Financial Dashboard</h1>
+            <div class="user-info">
+                <div class="user-avatar">U</div>
+                <span id="welcomeMessage">Welcome, User!</span>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <section class="financial-overview">
+                <div class="card balance-card">
+                    <h3>Current Balance</h3>
+                    <p class="amount" id="currentBalance">₹0.00</p>
+                </div>
+                <div class="card spending-card">
+                    <h3>Monthly Spending</h3>
+                    <p class="amount" id="monthlySpending">₹0.00</p>
+                </div>
+                <div class="card limit-card">
+                    <h3>Remaining Budget</h3>
+                    <p class="amount" id="remainingBudget">₹0.00</p>
+                </div>
+            </section>
+
+            <section class="charts-container">
+                <div class="chart-card">
+                    <h2>Spending by Category</h2>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h2>Budget Progress</h2>
+                    <div class="chart-container">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-actions">
+                <div class="add-expense-section">
+                    <h2>Record New Expenditure</h2>
+                    <form id="expenseForm" class="expense-form">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="expenseDescription">Description</label>
+                                <input type="text" id="expenseDescription" placeholder="What did you spend on?" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="expenseAmount">Amount (₹)</label>
+                                <input type="number" id="expenseAmount" placeholder="0.00" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="expenseCategory">Category</label>
+                            <select id="expenseCategory" required>
+                                <option value="">Select a category</option>
+                                <option value="food">Daily Food</option>
+                                <option value="junkfood">Junk Food</option>
+                                <option value="homefood">Food for Home</option>
+                                <option value="luxury">Luxury Items</option>
+                                <option value="shopping">Online Shopping</option>
+                                <option value="transport">Transportation</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="add-expense-btn">Add Expenditure</button>
+                    </form>
+                </div>
+
+                <div class="budget-section">
+                    <h2>Monthly Spending Limit</h2>
+                    <div class="budget-input">
+                        <input type="number" id="monthlyBudget" placeholder="Set your monthly budget (₹)" min="0">
+                        <button id="setBudgetBtn" class="set-budget-btn">Set Budget</button>
+                    </div>
+                    <div class="budget-progress">
+                        <div class="progress-bar">
+                            <div id="budgetProgress" class="progress-fill"></div>
+                        </div>
+                        <span id="budgetText" class="budget-text">Budget not set</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recent-expenses">
+                <h2>Recent Expenditures</h2>
+                <div id="expensesList" class="expenses-list">
+                    </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
